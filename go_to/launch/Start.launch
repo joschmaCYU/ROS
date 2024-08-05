@@ -1,0 +1,14 @@
+<launch>
+  <!-- Define arguments with default values -->
+
+  <!-- Launch the turtlesim node -->
+  <node name="turtlesim" pkg="turtlesim" type="turtlesim_node" />
+
+  <!-- Launch the go_to node with remapping and arguments -->
+  <node name="go_to" pkg="go_to" type="go_to" output="screen">
+    <remap from="/cmd_vel" to="/turtle1/cmd_vel" />
+    <param name="target_x" value="$(arg target_x)" />
+    <param name="target_y" value="$(arg target_y)" />
+  </node>
+</launch>
+
