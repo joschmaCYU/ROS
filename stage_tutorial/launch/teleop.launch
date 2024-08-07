@@ -1,0 +1,7 @@
+<!-- only one robot -->
+<launch>
+    <node pkg="stage_ros" type="stageros" name="stage_ros_node" args="$(find stage_tutorial)/worlds/rooms.world" output="screen"/>
+    
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop" output="screen" cwd="node"/>
+</launch>
+

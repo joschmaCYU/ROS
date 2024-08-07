@@ -154,8 +154,8 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-add_executable(reactive_navigation src/reactive_navigation.cpp)
-target_link_libraries(reactive_navigation ${catkin_LIBRARIES})
+#add_executable(reactive_navigation src/reactive_navigation.cpp)
+#target_link_libraries(reactive_navigation ${catkin_LIBRARIES})
 
 #############
 ## Install ##
