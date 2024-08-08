@@ -1,5 +1,5 @@
 include "../robots/simple_robot.inc"
-simple_robot(pose [ 10.1 9.1 0.000 91.000 ] nmae "robo1")
+simple_robot(pose [ 10.1 9.1 0.000 91.000 ] name "robo1")
 
 
 define floorplan model (
@@ -27,5 +27,4 @@ floorplan (
 )
 
 #include "../robots/simple_robots.png"
-
 #simple_robot (pose [ 11.1 9.2 0.000 90.000] name "robot")

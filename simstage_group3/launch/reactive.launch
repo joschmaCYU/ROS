@@ -1,10 +1,8 @@
+<?xml version="1.0"?>
 <launch>
-    <!--<arg name="config_name" default="simple_robot"/>
-    <arg name="map_name" default="rooms"/>-->
+    <arg name="map_name" default="rooms"/>
 
-    <node pkg="stage_ros" type="stageros" name="stage_ros_node" args="$(find simstage_group3)/worlds/rooms.world" output="screen"/>
-    
-    <node pkg="simstage_group3" type="reactive_navigation.py" name="reactive_navigation_py" output="screen" cwd="node"/>
-    <!--    <rosparam file="$(find simstage_group3)/config/$(arg config_name).yaml" command="load"/>
-    </node>-->
+    <node pkg="stage_ros" type="stageros" name="stage_ros" args="$(find simstage_group3)/worlds/$(arg map_name).world" output="screen"/>
+        
+    <node pkg="simstage_group3" type="reactive_navigation.py" name="reactive_navigation_py_group3" output="screen" cwd="node"/>
 </launch>

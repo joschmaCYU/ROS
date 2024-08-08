@@ -59,14 +59,14 @@ class ReactiveNavigation():
             else:
                 self.cmd_vel.linear.x = 1.0
                 self.cmd_vel.angular.z = 0.0
+            self.pub_CMD.publish(self.cmd_vel)
 
     def run(self):
         while not rospy.is_shutdown():
             self.calculate_command()
-            self.pub_CMD.publish(self.cmd_vel)
             self.rate.sleep()
 
 if __name__ == '__main__':
-    rospy.init_node("reactive_navigation_py")
+    rospy.init_node("reactive_navigation_py_group3")
     controller = ReactiveNavigation()
     controller.run()

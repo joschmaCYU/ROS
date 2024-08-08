@@ -1,4 +1,3 @@
-
 define floorplan model (
 	color "SlateGray"
 	boundary 1
@@ -23,5 +22,8 @@ floorplan (
 	bitmap "../maps/example.pgm"
 )
 
-include "../robots/simple_robot.inc"
-simple_robot(pose [ 8.1 7.1 0.000 91.000 ] name "robo0")
+#include "../robots/simple_robot.inc"
+#simple_robot(pose [ 8.1 7.1 0.000 91.000 ] name "robo")
+
+include "../robots/wall-e.inc"
+walle(pose [ 6.1 6.1 0.000 91.000 ] name "robot_0")
