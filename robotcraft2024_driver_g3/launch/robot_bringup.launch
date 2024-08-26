@@ -1,0 +1,6 @@
+<launch>
+    <node name="square_test_node" pkg="robotcraft2024_driver_g3" type="square_test" output="screen"/>
+    <include file="$(find robotcraft2024_driver_g3)/launch/robot_firmware.launch" />
+    <include file="$(find robotcraft2024_driver_g3)/launch/robot_driver.launch" />
+    <include file="$(find robotcraft_robot_description)/launch/display_robotcraft.launch" />
+</launch>

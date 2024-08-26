@@ -1,0 +1,16 @@
+
+<launch>
+    <!--<node pkg="robotcraft_maze" type="maze_BASICsolver" name="maze_solver" output="screen"/>-->
+    <node pkg="robotcraft_maze" type="maze_PROsolver" name="maze_solver" output="screen"/>
+    <node pkg="stage_ros" type="stageros" name="stageros" args="$(find robotcraft_maze)/world/robotcraft_maze.world" />
+    
+    <!--<node pkg="rviz" type="rviz" name="rviz" args="$(find robotcraft_maze)/rviz/simstage.rviz"/>-->
+    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+        <remap from="/scan" to="/base_scan_0"/>
+        <param name="maxRange" value="5.6"/>
+        <param name="xmin" value="0.0"/>
+        <param name="xmax" value="30.0"/>
+        <param name="ymin" value="0.0"/>
+        <param name="ymax" value="30.0"/>
+    </node>
+</launch>
