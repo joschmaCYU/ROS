@@ -99,7 +99,6 @@ void ros_okay(ros::Rate rate) {
 void calculateDifferences(const vector<pair<int, int>>& path, vector<pair<double, double>>& differences) {
     if (path.empty()) return;
 
-    // Initialize previous coordinates with the first element in the path
     double prev_i = path[0].first;
     double prev_j = path[0].second;
 
@@ -107,14 +106,11 @@ void calculateDifferences(const vector<pair<int, int>>& path, vector<pair<double
         double current_i = path[k].first;
         double current_j = path[k].second;
 
-        // Calculate differences
         double diff_i = current_i - prev_i;
         double diff_j = current_j - prev_j;
 
-        // Store differences in the vector
         differences.push_back(make_pair(diff_i, diff_j));
 
-        // Update previous coordinates
         prev_i = current_i;
         prev_j = current_j;
     }
@@ -138,12 +134,7 @@ void move_robot_to_target(vector<pair<int, int>>& path, int xstart, int ystart) 
         target_i += diff.second * 0.1;
         target_j -= diff.first * 0.1;
 
-        /*target_i = point.second;
-        target_j = point.first;*/
-
         while (ros::ok()) {
-            // Get the robot's current position
-            //ROS_INFO("Robot's current position: (%f, %f)", robot_x, robot_y);
             double irobot = robot_x;
             double jrobot = robot_y;
             float dx = target_i - irobot;
@@ -181,10 +172,8 @@ void move_robot_to_target(vector<pair<int, int>>& path, int xstart, int ystart) 
             move_cmd.linear.x = linear_vel;
             move_cmd.angular.z = angular_vel;
 
-            // Determine direction to move
             cmd_vel_pub.publish(move_cmd);
 
-            // Wait for the robot to move
             ros::spinOnce();
             ros::Rate(10).sleep();
         }
@@ -266,8 +255,6 @@ int main(int argc, char** argv) {
             }
         }
     }
-
-    //ROS_WARN("C size: %ld", C.size());
     
     vector<pair<int, int>> P;
     P.push_back({istart, jstart});
@@ -308,34 +295,9 @@ int main(int argc, char** argv) {
 
     save_matrix(out, "/home/josch/catkin_ws/src/robotcraft_maze/world/out.txt");
 
-    /*ROS_WARN("P size: %ld", P.size());
-
-    ROS_INFO("Path the robot will take:");
-    for (const auto& point : P) {
-        ROS_INFO("(%d, %d)", point.first, point.second);
-    }*/
-
     save_matrix(C, "/home/josch/catkin_ws/src/robotcraft_maze/world/C_matrix.txt");
     save_path(P, "/home/josch/catkin_ws/src/robotcraft_maze/world/P_path.txt");
     
-    /*while (ros::ok()) {
-        for (const auto& t : P) {
-        //ROS_INFO("Target: %d %d", t.first, t.second);
-        //ROS_INFO("M: %d %d", M[t.first][0], M[0][t.second]);
-        int irobot = argmin(M, M[t.first][0], true, t.first);
-        int jrobot = argmin(M, M[0][t.second], false, t.second);
-        
-            while (make_pair(irobot, jrobot) != t) {
-                irobot = argmin(M, M[t.first][0], true, t.first);
-                jrobot = argmin(M, M[0][t.second], false, t.second);
-                
-                move_robot_to_target(irobot, jrobot, t.first, t.second);
-                ros::spinOnce();
-                ros::Rate(10).sleep();
-            }
-        }
-    }*/
-
     move_robot_to_target(P, xstart, ystart);
     
     return 0;
