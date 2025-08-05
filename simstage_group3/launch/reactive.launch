@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-    <arg name="map_name" default="rooms"/>
-
-    <node pkg="stage_ros" type="stageros" name="stage_ros" args="$(find simstage_group3)/worlds/$(arg map_name).world" output="screen"/>
-        
-    <node pkg="simstage_group3" type="reactive_navigation.py" name="reactive_navigation_py_group3" output="screen" cwd="node"/>
-</launch>
